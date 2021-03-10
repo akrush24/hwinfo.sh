@@ -8,6 +8,22 @@
 
 TAB='   '
 
+
+# Check and install required packages
+## update repo list
+if [[ ! -f /etc/redhat-release ]]; then
+    apt-get update > /dev/null
+fi
+
+for PKG in lshw dmidecode pciutils; do
+        if [[ -f /etc/redhat-release ]]; then
+            rpm -ql ${PKG} > /dev/null || yum install ${PKG} -y
+        else
+            dpkg-query -W ${PKG} > /dev/null || apt-get install ${PKG} -y
+        fi
+done
+
+
 # Get system informations
 SYSTEM_MANUFACTURER=$(dmidecode -s system-manufacturer)
 SYSTEM_PRODUCT_NAME=$(dmidecode -s system-product-name)
