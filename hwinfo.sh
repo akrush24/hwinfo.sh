@@ -110,7 +110,8 @@ DISKS_INFO=$(
 
 
 # show collected information
-echo -e "PLATFORM:
+echo -e "
+PLATFORM:
 ${TAB}System manufacture: ${SYSTEM_MANUFACTURER} 
 ${TAB}Product name: ${SYSTEM_PRODUCT_NAME} 
 ${TAB}System version: ${SYSTEM_VERSION}
