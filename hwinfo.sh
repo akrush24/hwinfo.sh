@@ -6,7 +6,8 @@
 # - dmidecode
 # - lspci
 
-TAB='   '
+
+TAB="   "
 
 
 # Check and install required packages
@@ -16,11 +17,11 @@ if [[ ! -f /etc/redhat-release ]]; then
 fi
 
 for PKG in lshw dmidecode pciutils; do
-        if [[ -f /etc/redhat-release ]]; then
-            rpm -ql ${PKG} > /dev/null || yum install ${PKG} -y
-        else
-            dpkg-query -W ${PKG} > /dev/null || apt-get install ${PKG} -y
-        fi
+    if [[ -f /etc/redhat-release ]]; then
+        rpm -ql "${PKG}" > /dev/null || yum install "${PKG}" -y
+    else
+        dpkg-query -W "${PKG}" > /dev/null || apt-get install "${PKG}" -y
+    fi
 done
 
 
@@ -96,7 +97,7 @@ DISKS_INFO=$(
     lshw -class disk -short \
     | cut -f1 -d" " --complement \
     | sed -e 1,2d \
-    |  cut -f1 -d" " --complement \
+    | cut -f1 -d" " --complement \
     | sed -e 's/^[\ ]*//g' \
     | cut -f1 -d" " --complement \
     | sed -e 's/^[\ ]*//g' \
