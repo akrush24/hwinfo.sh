@@ -1,7 +1,9 @@
 # hwinfo.sh
 
 ```
-# curl -s https://raw.githubusercontent.com/akrush24/hwinfo.sh/main/hwinfo.sh | grep -v 'Invalid entry length' | sudo bash
+# curl -s https://raw.githubusercontent.com/akrush24/hwinfo.sh/main/hwinfo.sh \
+| sudo bash \
+| grep -v 'Invalid entry length'
                             
 PLATFORM:
    System manufacture: Supermicro 
