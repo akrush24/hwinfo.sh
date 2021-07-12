@@ -108,8 +108,15 @@ DISKS_INFO=$(
     | sed -E 's/([ \t]+?)([0-9]+)([\ ]+)(.+)/\2 x \4/g' \
     | sed "s/^/${TAB}/"
 )
-
-
+BIOS_VERSION=$(
+    dmidecode -s bios-version
+)
+IPMI_VERSION=$(
+    ipmitool mc info \
+    | egrep 'IPMI\ Version|Firmware\ Revision' \
+    | sed -E -e "s/\s{2,}//g" \
+    | sed -e "s/^/${TAB}${TAB}/"
+)
 # show collected information
 echo -e "
 PLATFORM:
@@ -119,6 +126,9 @@ ${TAB}System version: ${SYSTEM_VERSION}
 ${TAB}System S/N: ${SYSTEM_SERIAL_NUMBER}
 ${TAB}Baseboard name: ${BASEBOARD_PRODUCT_NAME}
 ${TAB}Baseboard S/N: ${BASEBOARD_SERIAL_NUMBER}
+${TAB}BIOS version: ${BIOS_VERSION}
+${TAB}IPMI:
+${IPMI_VERSION}
 CPU:
 ${TAB}Sockets: ${CPU_SOKETS}
 ${PROCESSOR_NAME}
