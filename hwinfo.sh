@@ -16,7 +16,7 @@ if [[ ! -f /etc/redhat-release ]]; then
     apt-get update > /dev/null
 fi
 
-for PKG in lshw dmidecode pciutils; do
+for PKG in lshw dmidecode pciutils ipmitool; do
     if [[ -f /etc/redhat-release ]]; then
         rpm -ql "${PKG}" > /dev/null || yum install "${PKG}" -y
     else
